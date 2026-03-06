@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+  <head>
+    <title>UPI Payment App</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+
+    <style>
+      body {
+        font-family: Arial;
+        text-align: center;
+        margin-top: 100px;
+      }
+
+      input {
+        padding: 10px;
+        font-size: 18px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 18px;
+        margin-top: 10px;
+        cursor: pointer;
+      }
+
+      #qrcode {
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>UPI Payment</h2>
+
+    <input type="number" id="amount" placeholder="Enter Amount" />
+
+    <br />
+
+    <button onclick="generateQR()">Pay</button>
+
+    <div id="qrcode"></div>
+
+    <script>
+      function generateQR() {
+        let amount = document.getElementById("amount").value;
+
+        let upiID = "7989490016@axl"; // replace with your UPI ID
+
+        let name = "Jaipal";
+
+        let paymentLink =
+          "upi://pay?pa=" + upiID + "&pn=" + name + "&am=" + amount + "&cu=INR";
+
+        document.getElementById("qrcode").innerHTML = "";
+
+        new QRCode(document.getElementById("qrcode"), paymentLink);
+      }
+    </script>
+  </body>
+</html>
